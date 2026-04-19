@@ -1,0 +1,32 @@
+{
+  "welcome": {
+    "tagline": "Finanzas, juntos.",
+    "login": "Iniciar sesión",
+    "register": "Crear cuenta"
+  },
+  "login": {
+    "title": "Bienvenido de vuelta",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "submit": "Iniciar sesión",
+    "noAccount": "¿No tienes cuenta?",
+    "register": "Regístrate"
+  },
+  "register": {
+    "title": "Crea tu cuenta",
+    "name": "Tu nombre",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "submit": "Crear cuenta",
+    "hasAccount": "¿Ya tienes cuenta?",
+    "login": "Iniciar sesión"
+  },
+  "errors": {
+    "required": "Este campo es obligatorio",
+    "invalidEmail": "Ingresa un correo electrónico válido",
+    "passwordMin": "La contraseña debe tener al menos 6 caracteres",
+    "loginFailed": "Correo o contraseña incorrectos",
+    "registerFailed": "No se pudo crear la cuenta. Intenta de nuevo.",
+    "networkError": "Error de conexión. Revisa tu internet."
+  }
+}

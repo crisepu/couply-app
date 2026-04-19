@@ -1,0 +1,32 @@
+{
+  "welcome": {
+    "tagline": "Finance, together.",
+    "login": "Log in",
+    "register": "Create account"
+  },
+  "login": {
+    "title": "Welcome back",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Log in",
+    "noAccount": "Don't have an account?",
+    "register": "Register"
+  },
+  "register": {
+    "title": "Create your account",
+    "name": "Your name",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Create account",
+    "hasAccount": "Already have an account?",
+    "login": "Log in"
+  },
+  "errors": {
+    "required": "This field is required",
+    "invalidEmail": "Enter a valid email address",
+    "passwordMin": "Password must be at least 6 characters",
+    "loginFailed": "Incorrect email or password",
+    "registerFailed": "Could not create account. Try again.",
+    "networkError": "Connection error. Check your internet."
+  }
+}
