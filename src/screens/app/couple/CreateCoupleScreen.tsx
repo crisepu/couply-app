@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
-import { Text, Button, ActivityIndicator } from 'react-native-paper';
+import { View, StyleSheet } from 'react-native';
+import { Text, Button, ActivityIndicator, Appbar } from 'react-native-paper';
 import * as Clipboard from 'expo-clipboard';
 import { useTranslation } from 'react-i18next';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -11,30 +11,39 @@ import type { AppStackParamList, Couple } from '@/types';
 
 type Props = NativeStackScreenProps<AppStackParamList, 'CreateCouple'>;
 
-export default function CreateCoupleScreen({ navigation }: Props) {
+export default function CreateCoupleScreen({ navigation, route }: Props) {
   const { t } = useTranslation();
-  const { user, token, couple: storedCouple, setCouple, setAuth } = useAuthStore();
-  const [couple, setLocalCouple] = useState<Couple | null>(storedCouple?.user2_id == null ? storedCouple : null);
+  const { user, token, couple: storedCouple, setCouple, setAuth, setCoupleSetupComplete } = useAuthStore();
+  const splitDone = route.params?.splitDone === true;
+  const [couple, setLocalCouple] = useState<Couple | null>(
+    storedCouple?.user2_id == null ? storedCouple : null
+  );
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
+  // Phase A: create couple then go to SplitSetup
   useEffect(() => {
-    if (!couple) {
-      coupleApi.create()
-        .then(({ data }: { data: Couple }) => {
-          setLocalCouple(data);
-          setCouple(data);
-          if (user && token) {
-            setAuth({ ...user, couple_id: data.id }, token);
-          }
-        })
-        .catch(() => setError(t('couple.createFailed')));
+    if (splitDone) return;
+    if (couple) {
+      navigation.navigate('SplitSetup');
+      return;
     }
+    coupleApi.create()
+      .then(({ data }: { data: Couple }) => {
+        setLocalCouple(data);
+        setCouple(data);
+        if (user && token) {
+          setAuth({ ...user, couple_id: data.id }, token);
+        }
+        navigation.navigate('SplitSetup');
+      })
+      .catch(() => setError(t('couple.createFailed')));
   }, []);
 
+  // Phase B: poll for partner joining
   useEffect(() => {
-    if (!couple) return;
+    if (!splitDone || !couple) return;
 
     intervalRef.current = setInterval(async () => {
       try {
@@ -42,7 +51,7 @@ export default function CreateCoupleScreen({ navigation }: Props) {
         if (data.user2_id != null) {
           clearInterval(intervalRef.current!);
           setCouple(data);
-          navigation.navigate('SplitSetup');
+          setCoupleSetupComplete(true);
         }
       } catch {}
     }, 5000);
@@ -50,7 +59,7 @@ export default function CreateCoupleScreen({ navigation }: Props) {
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [couple]);
+  }, [splitDone, couple]);
 
   const handleCopy = async () => {
     if (!couple) return;
@@ -61,47 +70,43 @@ export default function CreateCoupleScreen({ navigation }: Props) {
 
   if (error) {
     return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.header}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Text style={styles.backText}>← {t('common.back')}</Text>
-          </TouchableOpacity>
-        </View>
+      <View style={styles.container}>
+        <Appbar.Header style={styles.appbar} elevated={false}>
+          <Appbar.BackAction onPress={() => navigation.goBack()} color={Colors.text} />
+        </Appbar.Header>
         <View style={styles.center}>
           <Text style={styles.errorText}>{error}</Text>
         </View>
-      </SafeAreaView>
+      </View>
     );
   }
 
-  if (!couple) {
+  // Phase A loading (creating couple or navigating to SplitSetup)
+  if (!splitDone) {
     return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.header}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Text style={styles.backText}>← {t('common.back')}</Text>
-          </TouchableOpacity>
-        </View>
+      <View style={styles.container}>
+        <Appbar.Header style={styles.appbar} elevated={false}>
+          <Appbar.BackAction onPress={() => navigation.goBack()} color={Colors.text} />
+        </Appbar.Header>
         <View style={styles.center}>
           <ActivityIndicator color={Colors.primary} />
         </View>
-      </SafeAreaView>
+      </View>
     );
   }
 
+  // Phase B: show invite code and wait for partner
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Text style={styles.backText}>← {t('common.back')}</Text>
-        </TouchableOpacity>
-      </View>
+    <View style={styles.container}>
+      <Appbar.Header style={styles.appbar} elevated={false}>
+        <Appbar.BackAction onPress={() => navigation.navigate('CoupleWelcome')} color={Colors.text} />
+      </Appbar.Header>
       <View style={styles.content}>
         <Text style={styles.title}>{t('couple.inviteTitle')}</Text>
         <Text style={styles.subtitle}>{t('couple.inviteSubtitle')}</Text>
 
         <View style={styles.codeBox}>
-          <Text style={styles.code}>{couple.invite_code}</Text>
+          <Text style={styles.code}>{couple?.invite_code}</Text>
         </View>
 
         <Button
@@ -119,7 +124,7 @@ export default function CreateCoupleScreen({ navigation }: Props) {
           <Text style={styles.waitingText}>{t('couple.waitingPartner')}</Text>
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -128,15 +133,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.background,
   },
-  header: {
-    paddingHorizontal: Spacing.lg,
-    paddingTop: Spacing.sm,
-    paddingBottom: Spacing.xs,
-  },
-  backText: {
-    fontFamily: FontFamily.bodyRegular,
-    fontSize: FontSize.sm,
-    color: Colors.textMuted,
+  appbar: {
+    backgroundColor: Colors.background,
   },
   center: {
     flex: 1,

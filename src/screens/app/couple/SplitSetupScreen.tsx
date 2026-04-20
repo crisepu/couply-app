@@ -2,22 +2,24 @@ import React, { useState } from 'react';
 import {
   View,
   StyleSheet,
-  SafeAreaView,
-  TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
-import { Text, TextInput, Button, HelperText } from 'react-native-paper';
+import { Text, TextInput, Button, HelperText, Appbar } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { coupleApi } from '@/api/endpoints/couple';
 import { authApi } from '@/api/endpoints/auth';
 import { useAuthStore } from '@/store/useAuthStore';
 import { Colors, FontFamily, FontSize, Spacing, BorderRadius } from '@/theme';
+import type { AppStackParamList } from '@/types';
 
+type Props = NativeStackScreenProps<AppStackParamList, 'SplitSetup'>;
 type SplitMode = 'equal' | 'custom' | 'auto';
 
-export default function SplitSetupScreen() {
+export default function SplitSetupScreen({ navigation }: Props) {
   const { t } = useTranslation();
   const { setCouple } = useAuthStore();
   const [selected, setSelected] = useState<SplitMode>('equal');
@@ -54,6 +56,7 @@ export default function SplitSetupScreen() {
 
       const { data: updated } = await coupleApi.updateSplit(payload);
       setCouple(updated);
+      navigation.replace('CreateCouple', { splitDone: true });
     } catch {
       setServerError(t('errors.networkError'));
     } finally {
@@ -68,7 +71,10 @@ export default function SplitSetupScreen() {
   ];
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
+      <Appbar.Header style={styles.appbar} elevated={false}>
+        <Appbar.BackAction onPress={() => navigation.navigate('CoupleWelcome')} color={Colors.text} />
+      </Appbar.Header>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         style={styles.flex}
@@ -147,12 +153,13 @@ export default function SplitSetupScreen() {
           </Button>
         </ScrollView>
       </KeyboardAvoidingView>
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: Colors.background },
+  appbar: { backgroundColor: Colors.background },
   flex: { flex: 1 },
   scroll: {
     flexGrow: 1,

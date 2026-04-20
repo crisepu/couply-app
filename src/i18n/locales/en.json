@@ -49,6 +49,17 @@
     "joinFailed": "Invalid or already used invite code",
     "createFailed": "Could not create couple. Try again."
   },
+  "partnerReview": {
+    "title": "Your partner's proposal",
+    "equalMessage": "Your partner proposes splitting expenses equally (50/50)",
+    "customMessage": "Your partner proposes a custom split",
+    "autoMessage": "Your partner proposes splitting by income",
+    "yourPercentage": "Your share",
+    "partnerPercentage": "Partner's share",
+    "salaryLabel": "Your monthly salary",
+    "accept": "Accept",
+    "reject": "Decline"
+  },
   "common": {
     "logout": "Log out",
     "back": "Back"

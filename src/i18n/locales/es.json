@@ -49,6 +49,17 @@
     "joinFailed": "Código inválido o ya utilizado",
     "createFailed": "No se pudo crear la pareja. Intenta de nuevo."
   },
+  "partnerReview": {
+    "title": "Propuesta de tu pareja",
+    "equalMessage": "Tu pareja propone dividir los gastos en partes iguales (50/50)",
+    "customMessage": "Tu pareja propone una división personalizada",
+    "autoMessage": "Tu pareja propone dividir según los ingresos de cada uno",
+    "yourPercentage": "Tu porcentaje",
+    "partnerPercentage": "Porcentaje de tu pareja",
+    "salaryLabel": "Tu sueldo mensual",
+    "accept": "Aceptar",
+    "reject": "Rechazar"
+  },
   "common": {
     "logout": "Cerrar sesión",
     "back": "Volver"
