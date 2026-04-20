@@ -15,6 +15,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { firebaseAuth } from '@/lib/firebase';
 import { authApi } from '@/api/endpoints/auth';
+import { coupleApi } from '@/api/endpoints/couple';
 import { useAuthStore } from '@/store/useAuthStore';
 import { Colors, FontFamily, FontSize, Spacing, BorderRadius } from '@/theme';
 import type { AuthStackParamList } from '@/types';
@@ -28,7 +29,7 @@ interface LoginFormData {
 
 export default function LoginScreen({ navigation }: Props) {
   const { t } = useTranslation();
-  const { setAuth } = useAuthStore();
+  const { setAuth, setCouple } = useAuthStore();
   const [serverError, setServerError] = useState<string | null>(null);
 
   const {
@@ -47,6 +48,10 @@ export default function LoginScreen({ navigation }: Props) {
       useAuthStore.setState({ token });
       const { data: user } = await authApi.getMe();
       setAuth(user, token);
+      if (user.couple_id) {
+        const { data: couple } = await coupleApi.get();
+        setCouple(couple);
+      }
     } catch (err: unknown) {
       const firebaseErr = err as { code?: string };
       if (firebaseErr?.code?.startsWith('auth/')) {
