@@ -7,10 +7,11 @@ import { useAuthStore } from '@/store/useAuthStore';
 import { Colors, FontFamily, FontSize, Spacing } from '@/theme';
 
 export default function HomeScreen() {
-  const { user, clearAuth } = useAuthStore();
+  const { user, clearAuth, clearCouple } = useAuthStore();
 
   const handleLogout = async () => {
     await signOut(firebaseAuth);
+    clearCouple();
     clearAuth();
   };
 

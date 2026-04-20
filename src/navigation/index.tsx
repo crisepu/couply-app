@@ -10,6 +10,11 @@ import WelcomeScreen from '@/screens/auth/WelcomeScreen';
 import LoginScreen from '@/screens/auth/LoginScreen';
 import RegisterScreen from '@/screens/auth/RegisterScreen';
 import HomeScreen from '@/screens/app/HomeScreen';
+import CoupleWelcomeScreen from '@/screens/app/couple/CoupleWelcomeScreen';
+import CreateCoupleScreen from '@/screens/app/couple/CreateCoupleScreen';
+import JoinCoupleScreen from '@/screens/app/couple/JoinCoupleScreen';
+import SplitSetupScreen from '@/screens/app/couple/SplitSetupScreen';
+import PartnerSplitReviewScreen from '@/screens/app/couple/PartnerSplitReviewScreen';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const AuthStackNav = createNativeStackNavigator<AuthStackParamList>();
@@ -26,9 +31,21 @@ function AuthStack() {
 }
 
 function AppStack() {
+  const coupleSetupComplete = useAuthStore((s) => s.coupleSetupComplete);
+
   return (
     <AppStackNav.Navigator screenOptions={{ headerShown: false }}>
-      <AppStackNav.Screen name="Home" component={HomeScreen} />
+      {coupleSetupComplete ? (
+        <AppStackNav.Screen name="Home" component={HomeScreen} />
+      ) : (
+        <>
+          <AppStackNav.Screen name="CoupleWelcome" component={CoupleWelcomeScreen} />
+          <AppStackNav.Screen name="CreateCouple" component={CreateCoupleScreen} />
+          <AppStackNav.Screen name="JoinCouple" component={JoinCoupleScreen} />
+          <AppStackNav.Screen name="SplitSetup" component={SplitSetupScreen} />
+          <AppStackNav.Screen name="PartnerSplitReview" component={PartnerSplitReviewScreen} />
+        </>
+      )}
     </AppStackNav.Navigator>
   );
 }
