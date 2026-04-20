@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
-import { Text, Button } from 'react-native-paper';
+import { View, StyleSheet } from 'react-native';
+import { Text, Button, Appbar } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { signOut } from 'firebase/auth';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -22,12 +22,11 @@ export default function CoupleWelcomeScreen({ navigation }: Props) {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={handleLogout}>
-          <Text style={styles.logoutText}>{t('common.logout')}</Text>
-        </TouchableOpacity>
-      </View>
+    <View style={styles.container}>
+      <Appbar.Header style={styles.appbar} elevated={false}>
+        <Appbar.Content title="" />
+        <Appbar.Action icon="logout" onPress={handleLogout} iconColor={Colors.textMuted} />
+      </Appbar.Header>
       <View style={styles.hero}>
         <Text style={styles.title}>{t('couple.welcomeTitle')}</Text>
         <Text style={styles.subtitle}>{t('couple.welcomeSubtitle')}</Text>
@@ -54,7 +53,7 @@ export default function CoupleWelcomeScreen({ navigation }: Props) {
           {t('couple.joinButton')}
         </Button>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -63,17 +62,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.background,
     justifyContent: 'space-between',
-    paddingHorizontal: Spacing.lg,
     paddingBottom: Spacing['2xl'],
   },
-  header: {
-    alignItems: 'flex-end',
-    paddingTop: Spacing.sm,
-  },
-  logoutText: {
-    fontFamily: FontFamily.bodyRegular,
-    fontSize: FontSize.sm,
-    color: Colors.textMuted,
+  appbar: {
+    backgroundColor: Colors.background,
   },
   hero: {
     flex: 1,
@@ -95,6 +87,7 @@ const styles = StyleSheet.create({
   },
   actions: {
     gap: Spacing.sm,
+    paddingHorizontal: Spacing.lg,
   },
   primaryButton: {
     backgroundColor: Colors.primary,

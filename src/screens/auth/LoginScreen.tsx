@@ -29,7 +29,7 @@ interface LoginFormData {
 
 export default function LoginScreen({ navigation }: Props) {
   const { t } = useTranslation();
-  const { setAuth, setCouple } = useAuthStore();
+  const { setAuth, setCouple, setCoupleSetupComplete } = useAuthStore();
   const [serverError, setServerError] = useState<string | null>(null);
 
   const {
@@ -51,6 +51,9 @@ export default function LoginScreen({ navigation }: Props) {
       if (user.couple_id) {
         const { data: couple } = await coupleApi.get();
         setCouple(couple);
+        if (couple.user2_id != null) {
+          setCoupleSetupComplete(true);
+        }
       }
     } catch (err: unknown) {
       const firebaseErr = err as { code?: string };

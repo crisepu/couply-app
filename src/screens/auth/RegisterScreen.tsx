@@ -45,7 +45,7 @@ export default function RegisterScreen({ navigation }: Props) {
     try {
       const credential = await createUserWithEmailAndPassword(firebaseAuth, data.email, data.password);
       await updateProfile(credential.user, { displayName: data.name });
-      const token = await credential.user.getIdToken();
+      const token = await credential.user.getIdToken(true);
       useAuthStore.setState({ token });
       const { data: user } = await authApi.register();
       setAuth(user, token);

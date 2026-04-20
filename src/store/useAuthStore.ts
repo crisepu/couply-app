@@ -9,6 +9,7 @@ export const useAuthStore = create<AuthState>()(
       user: null,
       token: null,
       couple: null,
+      coupleSetupComplete: false,
       isLoading: true,
       isAuthenticated: false,
 
@@ -16,13 +17,15 @@ export const useAuthStore = create<AuthState>()(
         set({ user, token, isAuthenticated: true, isLoading: false }),
 
       clearAuth: () =>
-        set({ user: null, token: null, couple: null, isAuthenticated: false, isLoading: false }),
+        set({ user: null, token: null, couple: null, coupleSetupComplete: false, isAuthenticated: false, isLoading: false }),
 
       setLoading: (val: boolean) => set({ isLoading: val }),
 
       setCouple: (couple: Couple) => set({ couple }),
 
-      clearCouple: () => set({ couple: null }),
+      clearCouple: () => set({ couple: null, coupleSetupComplete: false }),
+
+      setCoupleSetupComplete: (val: boolean) => set({ coupleSetupComplete: val }),
     }),
     {
       name: 'couply-auth',
@@ -31,6 +34,7 @@ export const useAuthStore = create<AuthState>()(
         user: state.user,
         token: state.token,
         couple: state.couple,
+        coupleSetupComplete: state.coupleSetupComplete,
         isAuthenticated: state.isAuthenticated,
       }),
       onRehydrateStorage: () => (state) => {

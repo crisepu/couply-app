@@ -19,6 +19,7 @@ export interface AuthState {
   user: User | null;
   token: string | null;
   couple: Couple | null;
+  coupleSetupComplete: boolean;
   isLoading: boolean;
   isAuthenticated: boolean;
   setAuth: (user: User, token: string) => void;
@@ -26,6 +27,7 @@ export interface AuthState {
   setLoading: (val: boolean) => void;
   setCouple: (couple: Couple) => void;
   clearCouple: () => void;
+  setCoupleSetupComplete: (val: boolean) => void;
 }
 
 export type AuthStackParamList = {
@@ -37,9 +39,10 @@ export type AuthStackParamList = {
 export type AppStackParamList = {
   Home: undefined;
   CoupleWelcome: undefined;
-  CreateCouple: undefined;
+  CreateCouple: { splitDone?: boolean } | undefined;
   JoinCouple: undefined;
   SplitSetup: undefined;
+  PartnerSplitReview: undefined;
 };
 
 export type RootStackParamList = {

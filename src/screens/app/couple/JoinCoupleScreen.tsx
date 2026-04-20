@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, SafeAreaView, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity } from 'react-native';
-import { Text, TextInput, Button, HelperText } from 'react-native-paper';
+import { View, StyleSheet, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { Text, TextInput, Button, HelperText, Appbar } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { useForm, Controller } from 'react-hook-form';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -34,19 +34,17 @@ export default function JoinCoupleScreen({ navigation }: Props) {
       if (user && token) {
         setAuth({ ...user, couple_id: couple.id }, token);
       }
-      navigation.navigate('SplitSetup');
+      navigation.navigate('PartnerSplitReview');
     } catch {
       setServerError(t('couple.joinFailed'));
     }
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Text style={styles.backText}>← {t('common.back')}</Text>
-        </TouchableOpacity>
-      </View>
+    <View style={styles.container}>
+      <Appbar.Header style={styles.appbar} elevated={false}>
+        <Appbar.BackAction onPress={() => navigation.goBack()} color={Colors.text} />
+      </Appbar.Header>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         style={styles.flex}
@@ -93,22 +91,13 @@ export default function JoinCoupleScreen({ navigation }: Props) {
           </Button>
         </ScrollView>
       </KeyboardAvoidingView>
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: Colors.background },
-  header: {
-    paddingHorizontal: Spacing.lg,
-    paddingTop: Spacing.sm,
-    paddingBottom: Spacing.xs,
-  },
-  backText: {
-    fontFamily: FontFamily.bodyRegular,
-    fontSize: FontSize.sm,
-    color: Colors.textMuted,
-  },
+  appbar: { backgroundColor: Colors.background },
   flex: { flex: 1 },
   scroll: {
     flexGrow: 1,

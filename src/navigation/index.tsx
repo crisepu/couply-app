@@ -14,6 +14,7 @@ import CoupleWelcomeScreen from '@/screens/app/couple/CoupleWelcomeScreen';
 import CreateCoupleScreen from '@/screens/app/couple/CreateCoupleScreen';
 import JoinCoupleScreen from '@/screens/app/couple/JoinCoupleScreen';
 import SplitSetupScreen from '@/screens/app/couple/SplitSetupScreen';
+import PartnerSplitReviewScreen from '@/screens/app/couple/PartnerSplitReviewScreen';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const AuthStackNav = createNativeStackNavigator<AuthStackParamList>();
@@ -30,12 +31,11 @@ function AuthStack() {
 }
 
 function AppStack() {
-  const couple = useAuthStore((s) => s.couple);
-  const coupleComplete = couple?.user2_id != null;
+  const coupleSetupComplete = useAuthStore((s) => s.coupleSetupComplete);
 
   return (
     <AppStackNav.Navigator screenOptions={{ headerShown: false }}>
-      {coupleComplete ? (
+      {coupleSetupComplete ? (
         <AppStackNav.Screen name="Home" component={HomeScreen} />
       ) : (
         <>
@@ -43,6 +43,7 @@ function AppStack() {
           <AppStackNav.Screen name="CreateCouple" component={CreateCoupleScreen} />
           <AppStackNav.Screen name="JoinCouple" component={JoinCoupleScreen} />
           <AppStackNav.Screen name="SplitSetup" component={SplitSetupScreen} />
+          <AppStackNav.Screen name="PartnerSplitReview" component={PartnerSplitReviewScreen} />
         </>
       )}
     </AppStackNav.Navigator>
