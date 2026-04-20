@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, StyleSheet, SafeAreaView } from 'react-native';
+import { View, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
 import { Text, Button, ActivityIndicator } from 'react-native-paper';
 import * as Clipboard from 'expo-clipboard';
 import { useTranslation } from 'react-i18next';
@@ -62,6 +62,11 @@ export default function CreateCoupleScreen({ navigation }: Props) {
   if (error) {
     return (
       <SafeAreaView style={styles.container}>
+        <View style={styles.header}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Text style={styles.backText}>← {t('common.back')}</Text>
+          </TouchableOpacity>
+        </View>
         <View style={styles.center}>
           <Text style={styles.errorText}>{error}</Text>
         </View>
@@ -72,6 +77,11 @@ export default function CreateCoupleScreen({ navigation }: Props) {
   if (!couple) {
     return (
       <SafeAreaView style={styles.container}>
+        <View style={styles.header}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Text style={styles.backText}>← {t('common.back')}</Text>
+          </TouchableOpacity>
+        </View>
         <View style={styles.center}>
           <ActivityIndicator color={Colors.primary} />
         </View>
@@ -81,6 +91,11 @@ export default function CreateCoupleScreen({ navigation }: Props) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Text style={styles.backText}>← {t('common.back')}</Text>
+        </TouchableOpacity>
+      </View>
       <View style={styles.content}>
         <Text style={styles.title}>{t('couple.inviteTitle')}</Text>
         <Text style={styles.subtitle}>{t('couple.inviteSubtitle')}</Text>
@@ -112,6 +127,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.background,
+  },
+  header: {
+    paddingHorizontal: Spacing.lg,
+    paddingTop: Spacing.sm,
+    paddingBottom: Spacing.xs,
+  },
+  backText: {
+    fontFamily: FontFamily.bodyRegular,
+    fontSize: FontSize.sm,
+    color: Colors.textMuted,
   },
   center: {
     flex: 1,

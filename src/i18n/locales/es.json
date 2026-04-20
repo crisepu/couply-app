@@ -49,6 +49,10 @@
     "joinFailed": "Código inválido o ya utilizado",
     "createFailed": "No se pudo crear la pareja. Intenta de nuevo."
   },
+  "common": {
+    "logout": "Cerrar sesión",
+    "back": "Volver"
+  },
   "errors": {
     "required": "Este campo es obligatorio",
     "invalidEmail": "Ingresa un correo electrónico válido",

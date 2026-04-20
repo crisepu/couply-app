@@ -49,6 +49,10 @@
     "joinFailed": "Invalid or already used invite code",
     "createFailed": "Could not create couple. Try again."
   },
+  "common": {
+    "logout": "Log out",
+    "back": "Back"
+  },
   "errors": {
     "required": "This field is required",
     "invalidEmail": "Enter a valid email address",

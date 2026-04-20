@@ -1,8 +1,11 @@
 import React from 'react';
-import { View, StyleSheet, SafeAreaView } from 'react-native';
+import { View, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
 import { Text, Button } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
+import { signOut } from 'firebase/auth';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { firebaseAuth } from '@/lib/firebase';
+import { useAuthStore } from '@/store/useAuthStore';
 import { Colors, FontFamily, FontSize, Spacing, BorderRadius } from '@/theme';
 import type { AppStackParamList } from '@/types';
 
@@ -10,9 +13,21 @@ type Props = NativeStackScreenProps<AppStackParamList, 'CoupleWelcome'>;
 
 export default function CoupleWelcomeScreen({ navigation }: Props) {
   const { t } = useTranslation();
+  const { clearAuth, clearCouple } = useAuthStore();
+
+  const handleLogout = async () => {
+    await signOut(firebaseAuth);
+    clearCouple();
+    clearAuth();
+  };
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={handleLogout}>
+          <Text style={styles.logoutText}>{t('common.logout')}</Text>
+        </TouchableOpacity>
+      </View>
       <View style={styles.hero}>
         <Text style={styles.title}>{t('couple.welcomeTitle')}</Text>
         <Text style={styles.subtitle}>{t('couple.welcomeSubtitle')}</Text>
@@ -50,6 +65,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: Spacing.lg,
     paddingBottom: Spacing['2xl'],
+  },
+  header: {
+    alignItems: 'flex-end',
+    paddingTop: Spacing.sm,
+  },
+  logoutText: {
+    fontFamily: FontFamily.bodyRegular,
+    fontSize: FontSize.sm,
+    color: Colors.textMuted,
   },
   hero: {
     flex: 1,
