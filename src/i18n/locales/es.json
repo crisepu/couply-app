@@ -49,6 +49,49 @@
     "joinFailed": "Código inválido o ya utilizado",
     "createFailed": "No se pudo crear la pareja. Intenta de nuevo."
   },
+  "tabs": {
+    "home": "Inicio",
+    "expenses": "Gastos",
+    "profile": "Perfil"
+  },
+  "profile": {
+    "title": "Perfil"
+  },
+  "expenses": {
+    "title": "Gastos",
+    "shared": "Compartidos",
+    "personal": "Personales",
+    "addExpense": "Agregar gasto",
+    "amount": "Monto",
+    "category": "Categoría",
+    "description": "Descripción (opcional)",
+    "date": "Fecha",
+    "paidBy": "Pagado por",
+    "paidByMe": "Yo",
+    "paidByPartner": "Mi pareja",
+    "customSplit": "División personalizada para este gasto",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "deleteConfirm": "¿Estás seguro de que quieres eliminar este gasto?",
+    "noExpenses": "Sin gastos aún",
+    "editNotAllowed": "Solo puedes editar los gastos que creaste",
+    "paidByYou": "Pagado por ti",
+    "paidByPartnerLabel": "Pagado por tu pareja"
+  },
+  "categories": {
+    "rent": "Alquiler",
+    "groceries": "Supermercado",
+    "utilities": "Servicios",
+    "transport": "Transporte",
+    "dining": "Restaurantes",
+    "entertainment": "Entretenimiento",
+    "health": "Salud",
+    "travel": "Viajes",
+    "shopping": "Compras",
+    "education": "Educación",
+    "subscriptions": "Suscripciones",
+    "other": "Otro"
+  },
   "partnerReview": {
     "title": "Propuesta de tu pareja",
     "equalMessage": "Tu pareja propone dividir los gastos en partes iguales (50/50)",
