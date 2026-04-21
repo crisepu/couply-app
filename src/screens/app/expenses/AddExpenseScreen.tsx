@@ -43,7 +43,8 @@ interface FormData {
 
 export default function AddExpenseScreen({ navigation }: Props) {
   const { t } = useTranslation();
-  const { user, couple } = useAuthStore();
+  const { user, couple, partner } = useAuthStore();
+  const partnerLabel = partner?.name ?? partner?.email ?? t('expenses.paidByPartner');
   const partnerId = couple
     ? couple.user1_id === user?.id ? couple.user2_id! : couple.user1_id
     : '';
@@ -247,7 +248,7 @@ export default function AddExpenseScreen({ navigation }: Props) {
                   onPress={() => setPaidByMe(false)}
                 >
                   <Text style={[styles.toggleLabel, !paidByMe && styles.toggleLabelActive]}>
-                    {t('expenses.paidByPartner')}
+                    {partnerLabel}
                   </Text>
                 </TouchableOpacity>
               </View>

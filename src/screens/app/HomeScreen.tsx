@@ -19,11 +19,11 @@ import type { BalanceResponse, Expense, MainTabParamList } from '@/types';
 
 type Props = BottomTabScreenProps<MainTabParamList, 'Home'>;
 
-function ExpenseRow({ expense, userId }: { expense: Expense; userId: string }) {
+function ExpenseRow({ expense, userId, partnerLabel }: { expense: Expense; userId: string; partnerLabel: string }) {
   const { t } = useTranslation();
   const paidByLabel = expense.paid_by === userId
     ? t('expenses.paidByYou')
-    : t('expenses.paidByPartnerLabel');
+    : partnerLabel;
 
   return (
     <View style={styles.item}>
@@ -45,7 +45,8 @@ function ExpenseRow({ expense, userId }: { expense: Expense; userId: string }) {
 
 export default function HomeScreen({ navigation }: Props) {
   const { t } = useTranslation();
-  const { user, couple } = useAuthStore();
+  const { user, couple, partner } = useAuthStore();
+  const partnerLabel = partner?.name ?? partner?.email ?? t('expenses.paidByPartnerLabel');
   const [balance, setBalance] = useState<BalanceResponse | null>(null);
   const [recentExpenses, setRecentExpenses] = useState<Expense[]>([]);
   const [loading, setLoading] = useState(true);
@@ -193,7 +194,7 @@ export default function HomeScreen({ navigation }: Props) {
               <Text style={styles.emptyText}>{t('home.noExpenses')}</Text>
             ) : (
               recentExpenses.map((e) => (
-                <ExpenseRow key={e.id} expense={e} userId={user?.id ?? ''} />
+                <ExpenseRow key={e.id} expense={e} userId={user?.id ?? ''} partnerLabel={partnerLabel} />
               ))
             )}
           </View>

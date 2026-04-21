@@ -15,6 +15,12 @@ export interface Couple {
   invite_code: string;
 }
 
+export interface PublicUser {
+  id: string;
+  name: string | null;
+  email: string;
+}
+
 export interface AuthState {
   user: User | null;
   token: string | null;
@@ -22,12 +28,15 @@ export interface AuthState {
   coupleSetupComplete: boolean;
   isLoading: boolean;
   isAuthenticated: boolean;
+  partner: PublicUser | null;
   setAuth: (user: User, token: string) => void;
   clearAuth: () => void;
   setLoading: (val: boolean) => void;
   setCouple: (couple: Couple) => void;
   clearCouple: () => void;
   setCoupleSetupComplete: (val: boolean) => void;
+  setPartner: (partner: PublicUser) => void;
+  clearPartner: () => void;
 }
 
 export type AuthStackParamList = {

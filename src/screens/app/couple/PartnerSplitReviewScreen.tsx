@@ -4,6 +4,7 @@ import { Text, Button, TextInput, HelperText, Appbar } from 'react-native-paper'
 import { useTranslation } from 'react-i18next';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { authApi } from '@/api/endpoints/auth';
+import { usersApi } from '@/api/endpoints/users';
 import { useAuthStore } from '@/store/useAuthStore';
 import { Colors, FontFamily, FontSize, Spacing, BorderRadius } from '@/theme';
 import type { AppStackParamList } from '@/types';
@@ -12,7 +13,7 @@ type Props = NativeStackScreenProps<AppStackParamList, 'PartnerSplitReview'>;
 
 export default function PartnerSplitReviewScreen({ navigation }: Props) {
   const { t } = useTranslation();
-  const { couple, clearCouple, setCoupleSetupComplete } = useAuthStore();
+  const { couple, clearCouple, setCoupleSetupComplete, setPartner } = useAuthStore();
   const [salary, setSalary] = useState('');
   const [salaryError, setSalaryError] = useState<string | null>(null);
   const [serverError, setServerError] = useState<string | null>(null);
@@ -44,6 +45,10 @@ export default function PartnerSplitReviewScreen({ navigation }: Props) {
       setLoading(false);
     }
 
+    try {
+      const { data: partnerData } = await usersApi.getById(couple!.user1_id);
+      setPartner(partnerData);
+    } catch {}
     setCoupleSetupComplete(true);
   };
 

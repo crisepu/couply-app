@@ -5,6 +5,7 @@ import * as Clipboard from 'expo-clipboard';
 import { useTranslation } from 'react-i18next';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { coupleApi } from '@/api/endpoints/couple';
+import { usersApi } from '@/api/endpoints/users';
 import { useAuthStore } from '@/store/useAuthStore';
 import { Colors, FontFamily, FontSize, Spacing, BorderRadius } from '@/theme';
 import type { AppStackParamList, Couple } from '@/types';
@@ -13,7 +14,7 @@ type Props = NativeStackScreenProps<AppStackParamList, 'CreateCouple'>;
 
 export default function CreateCoupleScreen({ navigation, route }: Props) {
   const { t } = useTranslation();
-  const { user, token, couple: storedCouple, setCouple, setAuth, setCoupleSetupComplete } = useAuthStore();
+  const { user, token, couple: storedCouple, setCouple, setAuth, setCoupleSetupComplete, setPartner } = useAuthStore();
   const splitDone = route.params?.splitDone === true;
   const [couple, setLocalCouple] = useState<Couple | null>(
     storedCouple?.user2_id == null ? storedCouple : null
@@ -51,6 +52,10 @@ export default function CreateCoupleScreen({ navigation, route }: Props) {
         if (data.user2_id != null) {
           clearInterval(intervalRef.current!);
           setCouple(data);
+          try {
+            const { data: partnerData } = await usersApi.getById(data.user2_id);
+            setPartner(partnerData);
+          } catch {}
           setCoupleSetupComplete(true);
         }
       } catch {}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -14,6 +14,7 @@ import type {
   ExpensesStackParamList,
 } from '@/types';
 import { useTranslation } from 'react-i18next';
+import { usersApi } from '@/api/endpoints/users';
 
 import WelcomeScreen from '@/screens/auth/WelcomeScreen';
 import LoginScreen from '@/screens/auth/LoginScreen';
@@ -97,7 +98,14 @@ function MainTabs() {
 }
 
 function AppStack() {
-  const coupleSetupComplete = useAuthStore((s) => s.coupleSetupComplete);
+  const { couple, user, partner, setPartner, coupleSetupComplete } = useAuthStore();
+
+  useEffect(() => {
+    if (!coupleSetupComplete || !couple || !user || partner) return;
+    const partnerId = couple.user1_id === user.id ? couple.user2_id : couple.user1_id;
+    if (!partnerId) return;
+    usersApi.getById(partnerId).then(({ data }) => setPartner(data)).catch(() => {});
+  }, []);
 
   return (
     <AppStackNav.Navigator screenOptions={{ headerShown: false }}>

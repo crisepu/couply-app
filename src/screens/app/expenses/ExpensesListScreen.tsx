@@ -37,16 +37,12 @@ function currentYearMonth(): string {
 
 export default function ExpensesListScreen({ navigation }: Props) {
   const { t, i18n } = useTranslation();
-  const { user, couple } = useAuthStore();
+  const { user, partner } = useAuthStore();
+  const partnerLabel = partner?.name ?? partner?.email ?? t('expenses.paidByPartnerLabel');
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(currentYearMonth());
-
-  const partnerName = (() => {
-    if (!couple || !user) return t('expenses.paidByPartnerLabel');
-    return t('expenses.paidByPartnerLabel');
-  })();
 
   const fetchExpenses = useCallback(async (month: string) => {
     try {
@@ -79,7 +75,7 @@ export default function ExpensesListScreen({ navigation }: Props) {
       expense.type === 'shared'
         ? expense.paid_by === user?.id
           ? t('expenses.paidByYou')
-          : partnerName
+          : partnerLabel
         : null;
 
     return (
