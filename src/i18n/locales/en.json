@@ -1,0 +1,135 @@
+{
+  "welcome": {
+    "tagline": "Finance, together.",
+    "login": "Log in",
+    "register": "Create account"
+  },
+  "login": {
+    "title": "Welcome back",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Log in",
+    "noAccount": "Don't have an account?",
+    "register": "Register"
+  },
+  "register": {
+    "title": "Create your account",
+    "name": "Your name",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Create account",
+    "hasAccount": "Already have an account?",
+    "login": "Log in"
+  },
+  "couple": {
+    "welcomeTitle": "Set up your couple",
+    "welcomeSubtitle": "Manage finances together",
+    "createButton": "Create a couple",
+    "joinButton": "Join a couple",
+    "inviteTitle": "Your invite code",
+    "inviteSubtitle": "Share this code with your partner",
+    "copyCode": "Copy code",
+    "codeCopied": "Copied!",
+    "waitingPartner": "Waiting for your partner...",
+    "joinTitle": "Join a couple",
+    "inviteCodeLabel": "Invite code",
+    "joinSubmit": "Join",
+    "splitTitle": "How will you split expenses?",
+    "splitEqual": "Equal",
+    "splitEqualDesc": "50/50, always",
+    "splitCustom": "Custom",
+    "splitCustomDesc": "You decide the percentages",
+    "splitAuto": "By income",
+    "splitAutoDesc": "Proportional to each partner's salary",
+    "splitConfirm": "Confirm",
+    "percentageUser1": "Your percentage",
+    "percentageUser2": "Partner's percentage",
+    "salaryLabel": "Your monthly salary",
+    "percentagesError": "Percentages must sum to 100",
+    "joinFailed": "Invalid or already used invite code",
+    "createFailed": "Could not create couple. Try again."
+  },
+  "home": {
+    "settledUp": "You're all settled up! 🎉",
+    "youOwe": "You owe your partner",
+    "partnerOwes": "Your partner owes you",
+    "splitEqual": "Equal split",
+    "splitCustom": "Custom split",
+    "splitAuto": "Split by income",
+    "recentExpenses": "Recent expenses",
+    "seeAll": "See all",
+    "noExpenses": "No shared expenses yet",
+    "addExpense": "Add expense",
+    "settleUp": "Settle up",
+    "settleConfirmTitle": "Settle up",
+    "settleConfirmMessage": "Register a payment of ${{amount}} to settle the balance?",
+    "settleSuccess": "Balance settled!"
+  },
+  "tabs": {
+    "home": "Home",
+    "expenses": "Expenses",
+    "profile": "Profile"
+  },
+  "profile": {
+    "title": "Profile"
+  },
+  "expenses": {
+    "title": "Expenses",
+    "shared": "Shared",
+    "personal": "Personal",
+    "addExpense": "Add expense",
+    "amount": "Amount",
+    "category": "Category",
+    "description": "Description (optional)",
+    "date": "Date",
+    "paidBy": "Paid by",
+    "paidByMe": "Me",
+    "paidByPartner": "My partner",
+    "customSplit": "Custom split for this expense",
+    "save": "Save",
+    "delete": "Delete",
+    "deleteConfirm": "Are you sure you want to delete this expense?",
+    "noExpenses": "No expenses yet",
+    "editNotAllowed": "You can only edit expenses you created",
+    "paidByYou": "Paid by you",
+    "paidByPartnerLabel": "Paid by partner"
+  },
+  "categories": {
+    "rent": "Rent",
+    "groceries": "Groceries",
+    "utilities": "Utilities",
+    "transport": "Transport",
+    "dining": "Dining",
+    "entertainment": "Entertainment",
+    "health": "Health",
+    "travel": "Travel",
+    "shopping": "Shopping",
+    "education": "Education",
+    "subscriptions": "Subscriptions",
+    "other": "Other",
+    "settlement": "Settlement"
+  },
+  "partnerReview": {
+    "title": "Your partner's proposal",
+    "equalMessage": "Your partner proposes splitting expenses equally (50/50)",
+    "customMessage": "Your partner proposes a custom split",
+    "autoMessage": "Your partner proposes splitting by income",
+    "yourPercentage": "Your share",
+    "partnerPercentage": "Partner's share",
+    "salaryLabel": "Your monthly salary",
+    "accept": "Accept",
+    "reject": "Decline"
+  },
+  "common": {
+    "logout": "Log out",
+    "back": "Back"
+  },
+  "errors": {
+    "required": "This field is required",
+    "invalidEmail": "Enter a valid email address",
+    "passwordMin": "Password must be at least 6 characters",
+    "loginFailed": "Incorrect email or password",
+    "registerFailed": "Could not create account. Try again.",
+    "networkError": "Connection error. Check your internet."
+  }
+}

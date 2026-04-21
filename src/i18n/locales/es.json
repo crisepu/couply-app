@@ -1,0 +1,135 @@
+{
+  "welcome": {
+    "tagline": "Finanzas, juntos.",
+    "login": "Iniciar sesión",
+    "register": "Crear cuenta"
+  },
+  "login": {
+    "title": "Bienvenido de vuelta",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "submit": "Iniciar sesión",
+    "noAccount": "¿No tienes cuenta?",
+    "register": "Regístrate"
+  },
+  "register": {
+    "title": "Crea tu cuenta",
+    "name": "Tu nombre",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "submit": "Crear cuenta",
+    "hasAccount": "¿Ya tienes cuenta?",
+    "login": "Iniciar sesión"
+  },
+  "couple": {
+    "welcomeTitle": "Configura tu pareja",
+    "welcomeSubtitle": "Gestionen sus finanzas juntos",
+    "createButton": "Crear pareja",
+    "joinButton": "Unirse a una pareja",
+    "inviteTitle": "Tu código de invitación",
+    "inviteSubtitle": "Comparte este código con tu pareja",
+    "copyCode": "Copiar código",
+    "codeCopied": "¡Copiado!",
+    "waitingPartner": "Esperando a tu pareja...",
+    "joinTitle": "Unirse a una pareja",
+    "inviteCodeLabel": "Código de invitación",
+    "joinSubmit": "Unirse",
+    "splitTitle": "¿Cómo dividirán los gastos?",
+    "splitEqual": "Igual",
+    "splitEqualDesc": "50/50, siempre",
+    "splitCustom": "Personalizado",
+    "splitCustomDesc": "Tú decides los porcentajes",
+    "splitAuto": "Por ingresos",
+    "splitAutoDesc": "Proporcional al sueldo de cada uno",
+    "splitConfirm": "Confirmar",
+    "percentageUser1": "Tu porcentaje",
+    "percentageUser2": "Porcentaje de tu pareja",
+    "salaryLabel": "Tu sueldo mensual",
+    "percentagesError": "Los porcentajes deben sumar 100",
+    "joinFailed": "Código inválido o ya utilizado",
+    "createFailed": "No se pudo crear la pareja. Intenta de nuevo."
+  },
+  "home": {
+    "settledUp": "¡Están al día! 🎉",
+    "youOwe": "Le debes a tu pareja",
+    "partnerOwes": "Tu pareja te debe",
+    "splitEqual": "División igual",
+    "splitCustom": "División personalizada",
+    "splitAuto": "División por ingresos",
+    "recentExpenses": "Gastos recientes",
+    "seeAll": "Ver todos",
+    "noExpenses": "Aún no hay gastos compartidos",
+    "addExpense": "Agregar gasto",
+    "settleUp": "Liquidar",
+    "settleConfirmTitle": "Liquidar deuda",
+    "settleConfirmMessage": "¿Registrar un pago de ${{amount}} para liquidar el balance?",
+    "settleSuccess": "¡Balance liquidado!"
+  },
+  "tabs": {
+    "home": "Inicio",
+    "expenses": "Gastos",
+    "profile": "Perfil"
+  },
+  "profile": {
+    "title": "Perfil"
+  },
+  "expenses": {
+    "title": "Gastos",
+    "shared": "Compartidos",
+    "personal": "Personales",
+    "addExpense": "Agregar gasto",
+    "amount": "Monto",
+    "category": "Categoría",
+    "description": "Descripción (opcional)",
+    "date": "Fecha",
+    "paidBy": "Pagado por",
+    "paidByMe": "Yo",
+    "paidByPartner": "Mi pareja",
+    "customSplit": "División personalizada para este gasto",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "deleteConfirm": "¿Estás seguro de que quieres eliminar este gasto?",
+    "noExpenses": "Sin gastos aún",
+    "editNotAllowed": "Solo puedes editar los gastos que creaste",
+    "paidByYou": "Pagado por ti",
+    "paidByPartnerLabel": "Pagado por tu pareja"
+  },
+  "categories": {
+    "rent": "Alquiler",
+    "groceries": "Supermercado",
+    "utilities": "Servicios",
+    "transport": "Transporte",
+    "dining": "Restaurantes",
+    "entertainment": "Entretenimiento",
+    "health": "Salud",
+    "travel": "Viajes",
+    "shopping": "Compras",
+    "education": "Educación",
+    "subscriptions": "Suscripciones",
+    "other": "Otro",
+    "settlement": "Liquidación"
+  },
+  "partnerReview": {
+    "title": "Propuesta de tu pareja",
+    "equalMessage": "Tu pareja propone dividir los gastos en partes iguales (50/50)",
+    "customMessage": "Tu pareja propone una división personalizada",
+    "autoMessage": "Tu pareja propone dividir según los ingresos de cada uno",
+    "yourPercentage": "Tu porcentaje",
+    "partnerPercentage": "Porcentaje de tu pareja",
+    "salaryLabel": "Tu sueldo mensual",
+    "accept": "Aceptar",
+    "reject": "Rechazar"
+  },
+  "common": {
+    "logout": "Cerrar sesión",
+    "back": "Volver"
+  },
+  "errors": {
+    "required": "Este campo es obligatorio",
+    "invalidEmail": "Ingresa un correo electrónico válido",
+    "passwordMin": "La contraseña debe tener al menos 6 caracteres",
+    "loginFailed": "Correo o contraseña incorrectos",
+    "registerFailed": "No se pudo crear la cuenta. Intenta de nuevo.",
+    "networkError": "Error de conexión. Revisa tu internet."
+  }
+}
