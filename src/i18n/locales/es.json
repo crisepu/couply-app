@@ -59,7 +59,11 @@
     "recentExpenses": "Gastos recientes",
     "seeAll": "Ver todos",
     "noExpenses": "Aún no hay gastos compartidos",
-    "addExpense": "Agregar gasto"
+    "addExpense": "Agregar gasto",
+    "settleUp": "Liquidar",
+    "settleConfirmTitle": "Liquidar deuda",
+    "settleConfirmMessage": "¿Registrar un pago de ${{amount}} para liquidar el balance?",
+    "settleSuccess": "¡Balance liquidado!"
   },
   "tabs": {
     "home": "Inicio",
@@ -102,7 +106,8 @@
     "shopping": "Compras",
     "education": "Educación",
     "subscriptions": "Suscripciones",
-    "other": "Otro"
+    "other": "Otro",
+    "settlement": "Liquidación"
   },
   "partnerReview": {
     "title": "Propuesta de tu pareja",

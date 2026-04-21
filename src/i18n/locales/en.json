@@ -59,7 +59,11 @@
     "recentExpenses": "Recent expenses",
     "seeAll": "See all",
     "noExpenses": "No shared expenses yet",
-    "addExpense": "Add expense"
+    "addExpense": "Add expense",
+    "settleUp": "Settle up",
+    "settleConfirmTitle": "Settle up",
+    "settleConfirmMessage": "Register a payment of ${{amount}} to settle the balance?",
+    "settleSuccess": "Balance settled!"
   },
   "tabs": {
     "home": "Home",
@@ -102,7 +106,8 @@
     "shopping": "Shopping",
     "education": "Education",
     "subscriptions": "Subscriptions",
-    "other": "Other"
+    "other": "Other",
+    "settlement": "Settlement"
   },
   "partnerReview": {
     "title": "Your partner's proposal",

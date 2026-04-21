@@ -5,6 +5,7 @@ import {
   ScrollView,
   RefreshControl,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import { Text, Appbar, Button, ActivityIndicator } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
@@ -49,6 +50,7 @@ export default function HomeScreen({ navigation }: Props) {
   const [recentExpenses, setRecentExpenses] = useState<Expense[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const [settling, setSettling] = useState(false);
 
   const fetchData = useCallback(async () => {
     try {
@@ -57,7 +59,7 @@ export default function HomeScreen({ navigation }: Props) {
         expensesApi.list({ type: 'shared' }),
       ]);
       setBalance(balRes.data);
-      setRecentExpenses(expRes.data.slice(0, 5));
+      setRecentExpenses([...expRes.data].reverse().slice(0, 5));
     } catch {
       // keep previous state on error
     }
@@ -101,6 +103,42 @@ export default function HomeScreen({ navigation }: Props) {
     }
   }
 
+  const handleSettleUp = () => {
+    const d = new Date();
+    const today = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    Alert.alert(
+      t('home.settleConfirmTitle'),
+      t('home.settleConfirmMessage', { amount: balanceAmount.toFixed(2) }),
+      [
+        { text: t('common.cancel'), style: 'cancel' },
+        {
+          text: t('home.settleUp'),
+          onPress: async () => {
+            setSettling(true);
+            try {
+              const debtorIsUser1 = balance!.debtor === balance!.user1_id;
+              await expensesApi.create({
+                type: 'shared',
+                amount: balanceAmount,
+                category: 'settlement',
+                description: 'Settle up',
+                expense_date: today,
+                paid_by: balance!.debtor!,
+                split_override_user1: debtorIsUser1 ? 0 : 100,
+                split_override_user2: debtorIsUser1 ? 100 : 0,
+              });
+              await fetchData();
+            } catch {
+              // silent — user can retry
+            } finally {
+              setSettling(false);
+            }
+          },
+        },
+      ]
+    );
+  };
+
   return (
     <View style={styles.container}>
       <Appbar.Header style={styles.appbar} elevated={false}>
@@ -129,6 +167,18 @@ export default function HomeScreen({ navigation }: Props) {
               </Text>
             )}
             <Text style={styles.splitMode}>{splitLabel}</Text>
+            {!isSettled && (
+              <Button
+                mode="outlined"
+                onPress={handleSettleUp}
+                loading={settling}
+                disabled={settling}
+                style={[styles.settleButton, { borderColor: amountColor }]}
+                textColor={amountColor}
+              >
+                {t('home.settleUp')}
+              </Button>
+            )}
           </View>
 
           {/* Recent expenses */}
@@ -234,6 +284,11 @@ const styles = StyleSheet.create({
     fontSize: FontSize.base,
     color: Colors.primary,
     marginLeft: Spacing.sm,
+  },
+  settleButton: {
+    borderRadius: BorderRadius.md,
+    marginTop: Spacing.xs,
+    alignSelf: 'stretch',
   },
   addButton: {
     backgroundColor: Colors.primary,
