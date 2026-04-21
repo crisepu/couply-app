@@ -81,3 +81,35 @@ describe('couple completion logic', () => {
     expect(useAuthStore.getState().couple?.user2_id).toBe('user-2');
   });
 });
+
+describe('setCoupleSetupComplete', () => {
+  it('sets coupleSetupComplete to true', () => {
+    useAuthStore.getState().setCoupleSetupComplete(true);
+    expect(useAuthStore.getState().coupleSetupComplete).toBe(true);
+  });
+
+  it('sets coupleSetupComplete to false', () => {
+    useAuthStore.setState({ coupleSetupComplete: true });
+    useAuthStore.getState().setCoupleSetupComplete(false);
+    expect(useAuthStore.getState().coupleSetupComplete).toBe(false);
+  });
+});
+
+describe('clearAuth resets coupleSetupComplete', () => {
+  it('clears coupleSetupComplete on clearAuth', () => {
+    useAuthStore.getState().setAuth(mockUser, 'token-123');
+    useAuthStore.setState({ coupleSetupComplete: true });
+    useAuthStore.getState().clearAuth();
+    expect(useAuthStore.getState().coupleSetupComplete).toBe(false);
+  });
+});
+
+describe('clearCouple resets coupleSetupComplete', () => {
+  it('clears coupleSetupComplete on clearCouple', () => {
+    useAuthStore.getState().setCouple(mockCouple);
+    useAuthStore.setState({ coupleSetupComplete: true });
+    useAuthStore.getState().clearCouple();
+    expect(useAuthStore.getState().couple).toBeNull();
+    expect(useAuthStore.getState().coupleSetupComplete).toBe(false);
+  });
+});
