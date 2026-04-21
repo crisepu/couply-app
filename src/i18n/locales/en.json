@@ -49,6 +49,49 @@
     "joinFailed": "Invalid or already used invite code",
     "createFailed": "Could not create couple. Try again."
   },
+  "tabs": {
+    "home": "Home",
+    "expenses": "Expenses",
+    "profile": "Profile"
+  },
+  "profile": {
+    "title": "Profile"
+  },
+  "expenses": {
+    "title": "Expenses",
+    "shared": "Shared",
+    "personal": "Personal",
+    "addExpense": "Add expense",
+    "amount": "Amount",
+    "category": "Category",
+    "description": "Description (optional)",
+    "date": "Date",
+    "paidBy": "Paid by",
+    "paidByMe": "Me",
+    "paidByPartner": "My partner",
+    "customSplit": "Custom split for this expense",
+    "save": "Save",
+    "delete": "Delete",
+    "deleteConfirm": "Are you sure you want to delete this expense?",
+    "noExpenses": "No expenses yet",
+    "editNotAllowed": "You can only edit expenses you created",
+    "paidByYou": "Paid by you",
+    "paidByPartnerLabel": "Paid by partner"
+  },
+  "categories": {
+    "rent": "Rent",
+    "groceries": "Groceries",
+    "utilities": "Utilities",
+    "transport": "Transport",
+    "dining": "Dining",
+    "entertainment": "Entertainment",
+    "health": "Health",
+    "travel": "Travel",
+    "shopping": "Shopping",
+    "education": "Education",
+    "subscriptions": "Subscriptions",
+    "other": "Other"
+  },
   "partnerReview": {
     "title": "Your partner's proposal",
     "equalMessage": "Your partner proposes splitting expenses equally (50/50)",

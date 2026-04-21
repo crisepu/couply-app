@@ -36,8 +36,53 @@ export type AuthStackParamList = {
   Register: undefined;
 };
 
-export type AppStackParamList = {
+export interface Expense {
+  id: string;
+  couple_id: string;
+  created_by: string;
+  type: 'shared' | 'personal';
+  amount: number;
+  category: string;
+  description: string | null;
+  expense_date: string;
+  paid_by: string;
+  split_override_user1: number | null;
+  split_override_user2: number | null;
+  visible_to: string[];
+}
+
+export interface ExpenseFilters {
+  type?: 'shared' | 'personal';
+  month?: string;
+}
+
+export interface ExpenseCreatePayload {
+  type: 'shared' | 'personal';
+  amount: number;
+  category: string;
+  description?: string;
+  expense_date: string;
+  paid_by: string;
+  split_override_user1?: number;
+  split_override_user2?: number;
+}
+
+export type ExpenseUpdatePayload = Partial<ExpenseCreatePayload>;
+
+export type MainTabParamList = {
   Home: undefined;
+  Expenses: undefined;
+  Profile: undefined;
+};
+
+export type ExpensesStackParamList = {
+  ExpensesList: undefined;
+  AddExpense: undefined;
+  EditExpense: { expense: Expense };
+};
+
+export type AppStackParamList = {
+  MainTabs: undefined;
   CoupleWelcome: undefined;
   CreateCouple: { splitDone?: boolean } | undefined;
   JoinCouple: undefined;
