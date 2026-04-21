@@ -49,6 +49,22 @@
     "joinFailed": "Código inválido o ya utilizado",
     "createFailed": "No se pudo crear la pareja. Intenta de nuevo."
   },
+  "home": {
+    "settledUp": "¡Están al día! 🎉",
+    "youOwe": "Le debes a tu pareja",
+    "partnerOwes": "Tu pareja te debe",
+    "splitEqual": "División igual",
+    "splitCustom": "División personalizada",
+    "splitAuto": "División por ingresos",
+    "recentExpenses": "Gastos recientes",
+    "seeAll": "Ver todos",
+    "noExpenses": "Aún no hay gastos compartidos",
+    "addExpense": "Agregar gasto",
+    "settleUp": "Liquidar",
+    "settleConfirmTitle": "Liquidar deuda",
+    "settleConfirmMessage": "¿Registrar un pago de ${{amount}} para liquidar el balance?",
+    "settleSuccess": "¡Balance liquidado!"
+  },
   "tabs": {
     "home": "Inicio",
     "expenses": "Gastos",
@@ -90,7 +106,8 @@
     "shopping": "Compras",
     "education": "Educación",
     "subscriptions": "Suscripciones",
-    "other": "Otro"
+    "other": "Otro",
+    "settlement": "Liquidación"
   },
   "partnerReview": {
     "title": "Propuesta de tu pareja",

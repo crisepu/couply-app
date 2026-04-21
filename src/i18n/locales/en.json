@@ -49,6 +49,22 @@
     "joinFailed": "Invalid or already used invite code",
     "createFailed": "Could not create couple. Try again."
   },
+  "home": {
+    "settledUp": "You're all settled up! 🎉",
+    "youOwe": "You owe your partner",
+    "partnerOwes": "Your partner owes you",
+    "splitEqual": "Equal split",
+    "splitCustom": "Custom split",
+    "splitAuto": "Split by income",
+    "recentExpenses": "Recent expenses",
+    "seeAll": "See all",
+    "noExpenses": "No shared expenses yet",
+    "addExpense": "Add expense",
+    "settleUp": "Settle up",
+    "settleConfirmTitle": "Settle up",
+    "settleConfirmMessage": "Register a payment of ${{amount}} to settle the balance?",
+    "settleSuccess": "Balance settled!"
+  },
   "tabs": {
     "home": "Home",
     "expenses": "Expenses",
@@ -90,7 +106,8 @@
     "shopping": "Shopping",
     "education": "Education",
     "subscriptions": "Subscriptions",
-    "other": "Other"
+    "other": "Other",
+    "settlement": "Settlement"
   },
   "partnerReview": {
     "title": "Your partner's proposal",
