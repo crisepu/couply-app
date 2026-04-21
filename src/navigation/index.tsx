@@ -12,6 +12,7 @@ import type {
   AppStackParamList,
   MainTabParamList,
   ExpensesStackParamList,
+  ProfileStackParamList,
 } from '@/types';
 import { useTranslation } from 'react-i18next';
 import { usersApi } from '@/api/endpoints/users';
@@ -21,6 +22,8 @@ import LoginScreen from '@/screens/auth/LoginScreen';
 import RegisterScreen from '@/screens/auth/RegisterScreen';
 import HomeScreen from '@/screens/app/HomeScreen';
 import ProfileScreen from '@/screens/app/ProfileScreen';
+import EditProfileScreen from '@/screens/app/profile/EditProfileScreen';
+import CoupleSettingsScreen from '@/screens/app/profile/CoupleSettingsScreen';
 import CoupleWelcomeScreen from '@/screens/app/couple/CoupleWelcomeScreen';
 import CreateCoupleScreen from '@/screens/app/couple/CreateCoupleScreen';
 import JoinCoupleScreen from '@/screens/app/couple/JoinCoupleScreen';
@@ -35,6 +38,7 @@ const AuthStackNav = createNativeStackNavigator<AuthStackParamList>();
 const AppStackNav = createNativeStackNavigator<AppStackParamList>();
 const MainTab = createBottomTabNavigator<MainTabParamList>();
 const ExpensesStackNav = createNativeStackNavigator<ExpensesStackParamList>();
+const ProfileStackNav = createNativeStackNavigator<ProfileStackParamList>();
 
 function AuthStack() {
   return (
@@ -53,6 +57,16 @@ function ExpensesStack() {
       <ExpensesStackNav.Screen name="AddExpense" component={AddExpenseScreen} />
       <ExpensesStackNav.Screen name="EditExpense" component={EditExpenseScreen} />
     </ExpensesStackNav.Navigator>
+  );
+}
+
+function ProfileStack() {
+  return (
+    <ProfileStackNav.Navigator screenOptions={{ headerShown: false }}>
+      <ProfileStackNav.Screen name="ProfileMain" component={ProfileScreen} />
+      <ProfileStackNav.Screen name="EditProfile" component={EditProfileScreen} />
+      <ProfileStackNav.Screen name="CoupleSettings" component={CoupleSettingsScreen} />
+    </ProfileStackNav.Navigator>
   );
 }
 
@@ -90,7 +104,7 @@ function MainTabs() {
       />
       <MainTab.Screen
         name="Profile"
-        component={ProfileScreen}
+        component={ProfileStack}
         options={{ tabBarLabel: t('tabs.profile') }}
       />
     </MainTab.Navigator>

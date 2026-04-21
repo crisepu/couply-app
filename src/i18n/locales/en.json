@@ -71,7 +71,22 @@
     "profile": "Profile"
   },
   "profile": {
-    "title": "Profile"
+    "title": "Profile",
+    "myProfile": "My profile",
+    "myPartner": "My partner",
+    "coupleSettings": "Couple settings",
+    "editProfile": "Edit profile",
+    "editCouple": "Edit couple settings",
+    "name": "Name",
+    "email": "Email",
+    "salary": "Monthly salary",
+    "salaryWarning": "Updating your salary will affect all expenses without a custom split",
+    "leaveCouple": "Leave couple",
+    "leaveCoupleComingSoon": "This feature is coming soon",
+    "dangerZone": "Danger zone",
+    "splitCurrent": "Current split",
+    "saveChanges": "Save changes",
+    "settingsInfo": "Changes apply to all expenses without a custom split"
   },
   "expenses": {
     "title": "Expenses",

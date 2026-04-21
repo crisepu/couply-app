@@ -20,4 +20,7 @@ export const authApi = {
 
   updateMe: (payload: { name?: string; salary?: number }): Promise<{ data: User }> =>
     apiClient.patch('/auth/me', payload),
+
+  getMySalary: (): Promise<{ data: { salary: number | null } }> =>
+    apiClient.get('/auth/me/salary'),
 };

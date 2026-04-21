@@ -71,7 +71,22 @@
     "profile": "Perfil"
   },
   "profile": {
-    "title": "Perfil"
+    "title": "Perfil",
+    "myProfile": "Mi perfil",
+    "myPartner": "Mi pareja",
+    "coupleSettings": "Configuración de pareja",
+    "editProfile": "Editar perfil",
+    "editCouple": "Editar configuración",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "salary": "Sueldo mensual",
+    "salaryWarning": "Actualizar tu sueldo afectará todos los gastos sin división personalizada",
+    "leaveCouple": "Abandonar pareja",
+    "leaveCoupleComingSoon": "Esta función estará disponible pronto",
+    "dangerZone": "Zona de peligro",
+    "splitCurrent": "División actual",
+    "saveChanges": "Guardar cambios",
+    "settingsInfo": "Los cambios aplican a todos los gastos sin división personalizada"
   },
   "expenses": {
     "title": "Gastos",

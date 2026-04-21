@@ -98,6 +98,12 @@ export type ExpensesStackParamList = {
   EditExpense: { expense: Expense };
 };
 
+export type ProfileStackParamList = {
+  ProfileMain: undefined;
+  EditProfile: undefined;
+  CoupleSettings: undefined;
+};
+
 export type AppStackParamList = {
   MainTabs: undefined;
   CoupleWelcome: undefined;
