@@ -49,6 +49,18 @@
     "joinFailed": "Invalid or already used invite code",
     "createFailed": "Could not create couple. Try again."
   },
+  "home": {
+    "settledUp": "You're all settled up! 🎉",
+    "youOwe": "You owe your partner",
+    "partnerOwes": "Your partner owes you",
+    "splitEqual": "Equal split",
+    "splitCustom": "Custom split",
+    "splitAuto": "Split by income",
+    "recentExpenses": "Recent expenses",
+    "seeAll": "See all",
+    "noExpenses": "No shared expenses yet",
+    "addExpense": "Add expense"
+  },
   "tabs": {
     "home": "Home",
     "expenses": "Expenses",

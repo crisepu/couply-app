@@ -49,6 +49,18 @@
     "joinFailed": "Código inválido o ya utilizado",
     "createFailed": "No se pudo crear la pareja. Intenta de nuevo."
   },
+  "home": {
+    "settledUp": "¡Están al día! 🎉",
+    "youOwe": "Le debes a tu pareja",
+    "partnerOwes": "Tu pareja te debe",
+    "splitEqual": "División igual",
+    "splitCustom": "División personalizada",
+    "splitAuto": "División por ingresos",
+    "recentExpenses": "Gastos recientes",
+    "seeAll": "Ver todos",
+    "noExpenses": "Aún no hay gastos compartidos",
+    "addExpense": "Agregar gasto"
+  },
   "tabs": {
     "home": "Inicio",
     "expenses": "Gastos",

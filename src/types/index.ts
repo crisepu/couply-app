@@ -69,6 +69,14 @@ export interface ExpenseCreatePayload {
 
 export type ExpenseUpdatePayload = Partial<ExpenseCreatePayload>;
 
+export interface BalanceResponse {
+  user1_id: string;
+  user2_id: string;
+  balance: number;
+  debtor: string | null;
+  creditor: string | null;
+}
+
 export type MainTabParamList = {
   Home: undefined;
   Expenses: undefined;
